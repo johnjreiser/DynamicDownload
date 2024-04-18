@@ -29,7 +29,8 @@ class HeadlessBrowser(object):
         )
         self.cookies = {}
 
-    def get_url(self, site, fileExts=None):
+    def get_urls(self, site, fileExts=None):
+        urls = []
         try:
             logging.info(f"Requesting {site}...")
             self.driver.get(site)
@@ -45,9 +46,10 @@ class HeadlessBrowser(object):
                     href = tag.get_attribute("href")
                     for ext in fileExts:
                         if ext in href:
-                            print(href)
+                            urls.append(href)
         except Exception as e:
             logging.error(e)
+        return urls
 
     def close(self):
         self.driver.close()
@@ -71,7 +73,7 @@ if __name__ == "__main__":
 
     try:
         hb = HeadlessBrowser()
-        print(hb.get_url(args.url, args.extension))
+        [print(x) for x in hb.get_urls(args.url, args.extension)]
     except Exception as e:
         logging.error(e)
     finally:
