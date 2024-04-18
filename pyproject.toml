@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "dynamicdownload"
+version = "0.1.0"
+description = "Download a list of links from a dynamically generated web page."
+authors = ["John J Reiser <jreiser@njgeo.org>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+selenium = "^4.19.0"
+retrying = "^1.3.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
